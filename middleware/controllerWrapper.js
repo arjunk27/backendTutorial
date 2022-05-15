@@ -12,7 +12,7 @@ const controllerWrapper = (cb) => {
       await cb(req, res, next);
     } catch (error) {
       //   next(error);
-      res.status(500).json();
+      res.status(500).json({ msg: error });
     }
   };
 };
