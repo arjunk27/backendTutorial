@@ -11,8 +11,8 @@ const controllerWrapper = (cb) => {
     try {
       await cb(req, res, next);
     } catch (error) {
-      //   next(error);
-      res.status(500).json({ msg: error });
+      next(error);
+      // res.status(500).json({ msg: "Something went wrong, try again later." });
     }
   };
 };

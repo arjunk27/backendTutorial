@@ -5,15 +5,21 @@ require("dotenv").config();
 const stripe = require("stripe")(
   "sk_test_51JmilMCK0STRbfYrztb5AtWt3gn9qcRGPa9TtSnmflDVpz0Er5cFOgoSNuypyHrjZ5jf6FgeKrN6PHm2it7s5m2o002Ubih3G4"
 );
+const errorHandlerMiddleware = require("./middleware/error-handler");
+const notFound = require("./middleware/notFound");
 const tasks = require("./routes/tasks");
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => res.send("Welcome to backend tutorial"));
 
+//Middleware
 app.use(express.json());
 
+//routes
 app.use("/api/v1/tasks", tasks);
+app.use(errorHandlerMiddleware);
+app.use(notFound);
 
 const startServer = async () => {
   try {
