@@ -8,6 +8,7 @@ const stripe = require("stripe")(
 const errorHandlerMiddleware = require("./middleware/error-handler");
 const notFound = require("./middleware/notFound");
 const tasks = require("./routes/tasks");
+const changeSchema = require("./routes/changeSchema");
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 //routes
 app.use("/api/v1/tasks", tasks);
+app.use("/api/v1/change", changeSchema);
 app.use(errorHandlerMiddleware);
 app.use(notFound);
 

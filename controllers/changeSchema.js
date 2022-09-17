@@ -1,5 +1,5 @@
 const controllerWrapper = require("../middleware/controllerWrapper");
-const task = require("../models/task");
+const task = require("../models/changeSchema");
 const getAllTasks = controllerWrapper(async (req, res) => {
   const Task = await task.find();
   res.status(200).json({ Task });
